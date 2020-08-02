@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard1.6</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <PackageVersion>0.1.0</PackageVersion>
+        <Authors>Alan Doherty</Authors>
+        <PackageLicenseUrl>https://github.com/alandoherty/lsquic-net/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/alandoherty/lsquic-net</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+    </ItemGroup>
+
+</Project>
