@@ -6,7 +6,7 @@ namespace LitespeedQuic.Interop
    
     public static class NativeMethods
     {
-        public const string SharedLibraryPath = "lsquic2.so";
+        public const string SharedLibraryPath = "liblsquic.so";
 
         #region Globals
         /// <summary>
@@ -38,10 +38,26 @@ namespace LitespeedQuic.Interop
             [MarshalAs(UnmanagedType.LPStr)]string sni, ushort basePlpMtu, IntPtr sessionResume, IntPtr sessionResumeLen, IntPtr token, IntPtr tokenLen);
         
         [DllImport(SharedLibraryPath)]
+        public static extern int lsquic_engine_packet_in(IntPtr engine, IntPtr data, UIntPtr size, IntPtr localAddr,
+            IntPtr peerAddr, IntPtr peerCtx, int ecn);
+        
+        [DllImport(SharedLibraryPath)]
         public static extern void lsquic_engine_cooldown(IntPtr engine);
+
+        [DllImport(SharedLibraryPath)]
+        public static extern IntPtr lsquic_conn_id(IntPtr conn);
+
+        [DllImport(SharedLibraryPath)]
+        public static extern IntPtr lsquic_conn_get_ctx(IntPtr conn);
+        
+        [DllImport(SharedLibraryPath)]
+        public static extern IntPtr lsquic_conn_set_ctx(IntPtr conn, IntPtr ctx);
         
         [DllImport(SharedLibraryPath)]
         public static extern void lsquic_engine_destroy(IntPtr engine);
+
+        [DllImport(SharedLibraryPath)]
+        public static extern int lsquic_engine_earliest_adv_tick(IntPtr engine, IntPtr diff);
 
         [DllImport(SharedLibraryPath)]
         public static extern void lsquic_engine_process_conns(IntPtr engine);      

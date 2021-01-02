@@ -11,6 +11,8 @@ namespace LitespeedQuic.Interop
     public delegate void GoawayCallback(IntPtr conn);
     public delegate void NewTokenCallback(IntPtr conn, IntPtr token, IntPtr size);
     public delegate void SessionResumedCallback(IntPtr conn, IntPtr token, IntPtr size);
+    public delegate void DatagramWriteCallback(IntPtr conn, IntPtr buffer, IntPtr size);
+    public delegate void DatagramCallback(IntPtr conn, IntPtr buffer, IntPtr size);
     
     /// <summary>
     /// Provides an interface struct for engine stream callbacks.
@@ -46,6 +48,12 @@ namespace LitespeedQuic.Interop
         
         [MarshalAs(UnmanagedType.FunctionPtr)]
         public StreamCallback OnStreamClose;
+        
+        [MarshalAs(UnmanagedType.FunctionPtr)]
+        public DatagramWriteCallback OnDatagramWrite;
+        
+        [MarshalAs(UnmanagedType.FunctionPtr)]
+        public DatagramCallback OnDatagram;
 
         [MarshalAs(UnmanagedType.FunctionPtr)]
         public HandshakeCallback OnHandshake;

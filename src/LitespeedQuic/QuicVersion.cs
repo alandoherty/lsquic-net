@@ -36,6 +36,11 @@ namespace LitespeedQuic
       /// IETF QUIC Draft-29
       /// </summary>
       ID29,
+      
+      /// <summary>
+      /// IETF QUIC Draft-32
+      /// </summary>
+      ID32,
 
       /// <summary>
       /// Special version to trigger version negotiation. [draft-ietf-quic-transport-11], Section 3.

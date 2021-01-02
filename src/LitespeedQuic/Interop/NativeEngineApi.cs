@@ -9,6 +9,8 @@ namespace LitespeedQuic.Interop
     public delegate IntPtr UpdateConnectionIdsCallback (IntPtr cidCtx, IntPtr peerCtxs, IntPtr cids, uint cidCount);
     public delegate int VerifyCertificateCallback (IntPtr verifyCtx, IntPtr  chain);
     
+    public delegate int GenerateConnectIdCallback (IntPtr peerCtx, IntPtr  chain);
+
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeEngineApi
     {
@@ -20,7 +22,6 @@ namespace LitespeedQuic.Interop
         [MarshalAs(UnmanagedType.FunctionPtr)]
         public PacketsOutCallback OnPacketsOut;
         public IntPtr PacketsOutContext;
-       
         
         [MarshalAs(UnmanagedType.FunctionPtr)]
         public LookupCertificateCallback OnLookupCertificate;
@@ -46,15 +47,21 @@ namespace LitespeedQuic.Interop
         
         public IntPtr ConnectionIdsContext;
         
+        [MarshalAs(UnmanagedType.FunctionPtr)] 
         public VerifyCertificateCallback OnVerifyCertificate;
         public IntPtr VerifyCertificateCallback;
         
         public IntPtr HeaderInterfaces;
         public IntPtr HeaderInterfacesContext;
+        
+        public IntPtr StatsFileHandle;
 
         public IntPtr KeylogInterfaces;
         public IntPtr KeylogInterfacesContext;
 
         public IntPtr AlpnString;
+        
+        [MarshalAs(UnmanagedType.FunctionPtr)] 
+        public GenerateConnectIdCallback OnGenerateConnectionId;
     }
 }

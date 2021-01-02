@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard1.6</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <PackageVersion>0.1.0</PackageVersion>
         <Authors>Alan Doherty</Authors>
@@ -12,15 +12,21 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+      <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Interop\Crypto" />
+      <Folder Include="Interop\Ssl" />
     </ItemGroup>
 
 </Project>
